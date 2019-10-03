@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
     'backend.api',
     'backend.api.users',
-    'backend.api.experiences'
+    # 'backend.api.experiences'
 ]
 
 MIDDLEWARE = [
@@ -99,6 +99,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -163,7 +164,7 @@ REST_FRAMEWORK = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'backend.api.accounts.serializers.UserSerializer',
+    # 'USER_DETAILS_SERIALIZER': 'backend.api.accounts.serializers.UserSerializer',
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
