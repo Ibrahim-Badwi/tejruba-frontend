@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'backend.api',
-    'backend.api.accounts',
+    'backend.api.users',
     'backend.api.experiences'
 ]
 
