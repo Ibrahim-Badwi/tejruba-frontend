@@ -17,13 +17,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # regsiter new user
-    path('api/accounts/registration/', include('rest_auth.registration.urls')),
+    path('api/users/registration/', include('rest_auth.registration.urls')),
     
     # login and logout
-    path('api/accounts/', include('rest_auth.urls')),
+    path('api/users/', include('rest_auth.urls')),
 
     # update user settings an d profile
-    # path('api/accounts/', include('backend.api.accounts.urls')),
+    path('api/users/', include('backend.api.accounts.urls')),
 
     path('api-auth/', include('rest_framework.urls')),
 
