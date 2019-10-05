@@ -22,3 +22,5 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['tejruba1.herokuapp.com/', '*']
 #ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True

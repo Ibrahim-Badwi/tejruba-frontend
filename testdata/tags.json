@@ -1,0 +1,16 @@
+[
+{
+  "model": "experiences.tag",
+  "pk": 1,
+  "fields": {
+    "title": "web"
+  }
+},
+{
+  "model": "experiences.tag",
+  "pk": 2,
+  "fields": {
+    "title": "python"
+  }
+}
+]

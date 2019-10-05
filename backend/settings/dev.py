@@ -47,19 +47,22 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
-    
+    'allauth.socialaccount',
+
     'corsheaders',
 
     'backend.api',
-    'backend.api.accounts',
-    'backend.api.experiences'
+    'backend.api.users',
+    # 'backend.api.experiences'
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'backend.api.middlewares.CrossDomainSessionMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -99,6 +102,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -137,36 +141,35 @@ USE_TZ = True
 # http://whitenoise.evans.io/en/stable/django.html?highlight=django
 
 STATIC_URL = '/static/'
-# Serve `dist` as is, built by webpack
 STATIC_ROOT = os.path.join(BASE_DIR, 'dist', 'static')
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'dist/static'),]
-
-##########
-# STATIC #
-##########
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'
+
 
 # Insert Whitenoise Middleware at top but below Security Middleware
 # MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware',)
 # http://whitenoise.evans.io/en/stable/django.html#make-sure-staticfiles-is-configured-correctly
 
-REST_SESSION_LOGIN = True
+# REST_SESSION_LOGIN = True
+# CSRF_USE_SESSIONS = True
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ),
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'backend.api.accounts.serializers.UserSerializer',
+    # 'USER_DETAILS_SERIALIZER': 'backend.api.accounts.serializers.UserSerializer',
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -186,6 +189,3 @@ CORS_ORIGIN_ALLOW_ALL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
-
-
-CSRF_USE_SESSIONS = True

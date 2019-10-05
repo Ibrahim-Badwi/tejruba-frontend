@@ -129,3 +129,5 @@ media/
 *.pyc
 *.db
 *.pid
+
+**/migrations/*
