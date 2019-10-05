@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
-    
+    'allauth.socialaccount',
+
     'corsheaders',
 
     'backend.api',
@@ -149,13 +150,15 @@ MEDIA_URL = '/media/'
 # MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware',)
 # http://whitenoise.evans.io/en/stable/django.html#make-sure-staticfiles-is-configured-correctly
 
-REST_SESSION_LOGIN = True
+# REST_SESSION_LOGIN = True
+# CSRF_USE_SESSIONS = True
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
@@ -184,6 +187,3 @@ CORS_ORIGIN_ALLOW_ALL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
-
-
-CSRF_USE_SESSIONS = True
