@@ -6,5 +6,5 @@ from .views import UserList, UserDetail
 urlpatterns = [
     # main page index
     path('', UserList.as_view(), name='user_list'),
-    path('<int:pk>/', UserDetail.as_view(), name='user_detail')
+    path('<str:username>/', UserDetail.as_view(), name='user_detail')
 ]
