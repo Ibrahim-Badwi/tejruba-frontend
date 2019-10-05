@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import CustomUser, Settings
+
+
+class SettingsInline(admin.StackedInline):
+    model = Settings
+
+
+class CustomUserAdmin(admin.ModelAdmin):
+    inlines = [SettingsInline, ]
+
+admin.site.register(CustomUser, CustomUserAdmin)
