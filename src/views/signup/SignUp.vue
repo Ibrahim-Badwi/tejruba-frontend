@@ -74,13 +74,15 @@ export default {
         signUp: function () {
             if (this.$refs.signUpForm.validate()) {
                 if (this.password1 === this.password2) {
-                    let user = {
+                    const userInfo = {
                         name: this.name,
                         email: this.email,
                         password1: this.password1,
                         password2: this.password2
                     }
-                    this.$store.dispatch('register', user).then(() => {
+                    console.log("user from vuefile " + userInfo + userInfo.name + userInfo.email + userInfo.password1 + userInfo.password2)
+                    this.$store.dispatch('register', {
+                        name: userInfo.name, email: userInfo.email, password1: userInfo.password1,password2: userInfo.password2}).then(() => {
                             commit('updateSnackBar', {
                                 message: 'تم التسجيل بنجاح',
                                 color: 'success'
