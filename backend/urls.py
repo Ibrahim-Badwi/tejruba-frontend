@@ -8,6 +8,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from rest_framework_jwt import views as jwt_views
 
 urlpatterns = [
     # main page index
@@ -28,4 +29,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
 
     # path('api/comments/', include('backend.api.experiences.urls')),
+
+     # JWT auth
+    path('api/users/obtain_token/', jwt_views.obtain_jwt_token),
+    path('api/users/refresh_token/', jwt_views.refresh_jwt_token)
 ]
